@@ -1,0 +1,261 @@
+#include <cstdlib>
+#include <iostream>
+#include <graphics.h> 
+#include <time.h>
+#include <conio.h>
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+	cout<<"if you want to play by time enter 1"<<endl;
+	cout<<"if you want to play by bumps enter 2"<<endl;
+	int h;
+	for(;;)
+	{
+		cin>>h;
+		if(h==1)
+		{
+			initwindow(700,700);	
+			setcolor(11);
+			line(100,1,100,600);
+			line(600,1,600,600);
+			setcolor(2);
+			line(100,600,600,600);
+			setcolor(3);
+			char ch=0;
+			double x=310,y=200,z=580,t=580,vx=0,vy=0,g=0.02,a=100,b=560;
+			bool flag=false;
+			setcolor(14);
+			setfillstyle(1,3);
+			fillellipse(x,y,10,10);
+			setfillstyle(1,10);
+			bar(a,500,a+40,505);
+			setfillstyle(1,10);
+			bar(b,100,b+40,95);
+			cout<<"enter the game by pressing enter"<<endl;
+			cout<<"survive for 60 seconds to win!"<<endl;
+			while(ch!=13)
+				ch=getch();
+			float da=0.8,db=-0.8;
+			int start=time(0);
+		    bool f=false;
+		    while(f==false)
+			{
+				setcolor(11);
+				line(100,1,100,600);
+				line(600,1,600,600);
+				setcolor(2);
+				line(100,600,600,600);
+			    setcolor(0);
+				setfillstyle(1,0);
+				fillellipse(x,y,25,25);
+				setcolor(14);
+				setfillstyle(1,3);
+				fillellipse(x,y,10,10);
+				setfillstyle(1,3);
+				fillellipse(x,y,10,10);
+				setfillstyle(1,10);
+				bar(a,500,a+40,505);	
+			   	setfillstyle(1,10);
+			    bar(b,100,b+40,95);
+				delay(7);
+				if(kbhit())
+				{
+					char c=getch();
+					if(c=='a' || c==75)
+						vx-=0.9;
+					if(c=='d' || c==77)
+						vx+=0.9;
+				}
+				setcolor(0);
+				setfillstyle(1,0);
+				rectangle(a-1,499,a+41,506);
+			    setfillstyle(1,0);
+				rectangle(b-1,101,b+41,94);
+				vy+=g;
+				vx*=0.995;
+				if(x>=z)
+				{
+					vx=-vx;
+				}
+				if(x<120)
+				{
+					vx=- vx;
+				}
+				if(y>=z)
+				{
+					vy=-vy;
+				}
+				x+=vx;
+				y+=vy;
+				if(x>=a-10 && x<a+50 && vy>0 && y>=490)
+				{
+					vy=-4.5;
+				}
+				if(x>=b-10 && x<b+50 && vy<0 && y<=110)
+				{
+			         vy=1;
+		        }
+			    if(y>=515 || y<=85)
+				{
+					setcolor(14);
+					outtextxy(300,340,"You Lose!");
+					cout<<"You Lose!"<<endl;
+					f=true;
+				}
+				if(a+40>=590)
+				{
+					da=-0.8;
+				}
+				else if(a<110)
+				{
+					da=0.8;
+				}
+				if(b<110)
+				{
+			        db=0.8;
+			    }
+		        else if(b+40>=590)
+		        {
+		            db=-0.8;
+				}
+				b+=db;
+				a+=da;	
+				int now=time(0);
+				if(now-start>=60)
+				{
+					setcolor(14);
+					outtextxy(300,350,"You Win!");
+					cout<<"You Win!"<<endl;
+					break;
+				}
+			}
+		}
+		if(h==2)
+		{
+			initwindow(700,700);	
+			setcolor(11);
+			line(100,1,100,600);
+			line(600,1,600,600);
+			setcolor(2);
+			line(100,600,600,600);
+			setcolor(3);
+			char ch=0;
+			double x=310,y=200,z=580,t=580,vx=0,vy=0,g=0.02,a=100,b=560;
+			bool flag=false;
+			setcolor(14);
+			setfillstyle(1,3);
+			fillellipse(x,y,10,10);
+			setfillstyle(1,10);
+			bar(a,500,a+40,505);
+			setfillstyle(1,10);
+			bar(b,100,b+40,95);
+			cout<<"enter the game by pressing enter"<<endl;
+			cout<<"bump for 20 times to win!"<<endl;
+			while(ch!=13)
+				ch=getch();
+			float da=0.8,db=-0.8,bump=0;
+		    bool f=false;
+		    while(f==false)
+			{
+				setcolor(11);
+				line(100,1,100,600);
+				line(600,1,600,600);
+				setcolor(2);
+				line(100,600,600,600);
+		 	    setcolor(0);
+				setfillstyle(1,0);
+				fillellipse(x,y,25,25);
+				setcolor(14);
+				setfillstyle(1,3);
+				fillellipse(x,y,10,10);
+				setfillstyle(1,3);
+				fillellipse(x,y,10,10);
+				setfillstyle(1,10);
+				bar(a,500,a+40,505);	
+		    	setfillstyle(1,10);
+		     	bar(b,100,b+40,95);
+				delay(7);
+				if(kbhit())
+				{
+					char c=getch();
+					if(c=='a' || c==75)
+						vx-=0.9;
+					if(c=='d' || c==77)
+						vx+=0.9;
+					if(c=='w' || c==72)
+						vy-=0.85;
+					if(c=='s' || c==80)
+						vy+=0.85;
+				}
+				setcolor(0);
+				setfillstyle(1,0);
+				rectangle(a-1,499,a+41,506);
+		        setfillstyle(1,0);
+				rectangle(b-1,101,b+41,94);
+				vy+=g;
+				vx*=0.995;
+				if(x>=z)
+				{
+					vx=-vx;
+				}
+				if(x<120)
+				{
+					vx=- vx;
+				}
+				if(y>=z)
+				{
+					vy=-vy;
+				}
+				x+=vx;
+				y+=vy;
+				if(x>=a-10 && x<a+50 && vy>0 && y>=490)
+				{
+					vy=-4.5;
+					bump++;
+				}
+				if(x>=b-10 && x<b+50 && vy<0 && y<=110)
+				{
+		            vy=1.5;
+		            bump++;
+		        }
+		        if(y>=515 || y<=85)
+				{
+					setcolor(14);
+					outtextxy(300,340,"You Lose!");
+					cout<<"You Lose!"<<endl;
+					f=true;
+				}
+				if(a+40>=590)
+				{
+					da=-0.8;
+				}
+				else if(a<110)
+				{
+					da=0.8;
+				}
+				if(b<110)
+				{
+		            db=0.8;
+		        }
+		        else if(b+40>=590)
+		        {
+		            db=-0.8;
+		        }	
+				b+=db;
+				a+=da;
+				if(bump>=20)
+				{
+					setcolor(14);
+					outtextxy(300,350,"You Win!");
+					cout<<"You Win!"<<endl;
+					break;
+				}
+			}
+		}
+		Sleep(2000);	
+		closegraph();
+	}
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
